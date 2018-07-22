@@ -6,6 +6,8 @@ import java.lang.reflect.Field;
 import java.util.Objects;
 
 /**
+ * 当开发者使用了Annotation修饰类、方法、Filed等成员之后，这些Annotation不会自己生效，必须由开发者提供相应
+ * 的代码来提取并处理Annotation的信息。这些处理提取和处理Annotation的代码统称为APT即Annotation Processing Tool.
  * @author qinlinsen
  */
 public class MotherProcessor {
@@ -16,6 +18,7 @@ public class MotherProcessor {
             boolean isMotherPresent = field.isAnnotationPresent(Mother.class);
             //得到@Mother这个注解
             if (isMotherPresent) {
+                //得到这个字段上的注解类@Mother
                 Mother motherAnnotation = field.getAnnotation(Mother.class);
                 Objects.requireNonNull(annotation);
                 annotation.setName(motherAnnotation.name());
